@@ -1,6 +1,10 @@
 
 class Customer{
-    constructor( name ){
+    constructor( name,  roomServiceCallback, checkOutCallback ){
+        this.callbacks = {
+            roomservice: roomServiceCallback,
+            checkout: checkOutCallback
+        }
         this.name = name;
     }
 }
