@@ -11,6 +11,7 @@ class Hotel{
       for(var i = 0; i < this.rooms.length; i++){
         if(this.rooms[i].isVacant()){
           this.rooms[i].addCustomer(customer)
+          break;
         }
       }
     }
