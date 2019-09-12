@@ -1,0 +1,3 @@
+
+
+var mgmgrande = new Hotel();
