@@ -1,12 +1,13 @@
 class Hotel{
     constructor(){
-      this.roomService = this.roomService.bind(this);
+      this.takeRoomServiceOrder = this.takeRoomServiceOrder.bind(this);
       this.checkout = this.checkout.bind(this);
       this.rooms = [];
       this.customers = [];
+      this.orders = [];
     }
     addCustomer(name){
-      var customer = new Customer(name, this.roomService, this.checkout);
+      var customer = new Customer(name, this.takeRoomServiceOrder, this.checkout);
       this.customers.push(customer);
       for(var i = 0; i < this.rooms.length; i++){
         if(this.rooms[i].isVacant()){
@@ -18,9 +19,19 @@ class Hotel{
     addRoom(roomId){
       this.rooms.push(new Room(roomId));
     }
-    roomService(){
-      console.log('customer ordered room service');
+    takeRoomServiceOrder(foodItem, customer){
+      console.log('Customer ordered room service');
+      var currentRoom = customer.getCurrentRoom();
+      this.orders.unshift({item: foodItem, room: currentRoom});
+      var randomTime = Math.random() * 5000;
+      setTimeout(this.fulfillRoomServiceOrder, randomTime)
     }
+    fulfillRoomServiceOrder(){
+      console.log('Customer order fulfilled');
+      var order = this.orders.pop();
+      order.room.deliverRoomService(order.item);
+    }
+
     checkout(){
       console.log('customer is checking out');
     }
