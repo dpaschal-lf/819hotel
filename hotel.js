@@ -1,6 +1,7 @@
 class Hotel{
     constructor(){
       this.takeRoomServiceOrder = this.takeRoomServiceOrder.bind(this);
+      this.fulfillRoomServiceOrder = this.fulfillRoomServiceOrder.bind(this);
       this.checkout = this.checkout.bind(this);
       this.rooms = [];
       this.customers = [];
