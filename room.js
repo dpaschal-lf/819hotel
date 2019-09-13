@@ -20,6 +20,19 @@ class Room {
     this.vacant = false;
   }
 
+  removeCustomer () {
+    this.customer = null;
+    this.vacant = true;
+
+    var randomTime = Math.floor(Math.random() * 10000);
+
+    setTimeout(function() {
+      this.clean = true;
+    }, randomTime);
+
+    return true;
+  }
+
   deliverRoomService (item) {
     if (this.customer) {
       this.customer.receiveRoomService(item);
