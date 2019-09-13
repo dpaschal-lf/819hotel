@@ -4,12 +4,18 @@ var mgmgrande = new Hotel();
 
 for( var roomID=100; roomID < 104; roomID++){
     mgmgrande.addRoom( roomID );
+    addRandomPersonToHotel();
 }
 
-function addRandomPersonToList(){
-    var randomPerson = people[ Math.floor( people.length * Math.random()) ];
+function addRandomPersonToHotel(){
+    var index = Math.floor( people.length * Math.random());
+    var randomPerson = people[ index ];
+    people.splice(index, 1);
+
     var success = mgmgrande.addCustomer( randomPerson );
-    setTimeout( addRandomPersonToList , (Math.random()*20000)>>0) ;
+    if(people.length){
+        setTimeout( addRandomPersonToHotel , Math.floor((Math.random()*20000)) + 10000) ;
+    }
 
     if(success){
         console.log('checked ' + randomPerson + ' into the hotel');
