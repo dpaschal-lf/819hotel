@@ -13,9 +13,10 @@ class Hotel{
       for(var i = 0; i < this.rooms.length; i++){
         if(this.rooms[i].isVacant()){
           this.rooms[i].addCustomer(customer)
-          break;
+          return true;
         }
       }
+      return false;
     }
     addRoom(roomId){
       this.rooms.push(new Room(roomId));
@@ -32,8 +33,13 @@ class Hotel{
       var order = this.orders.pop();
       order.room.deliverRoomService(order.item);
     }
-
-    checkout(){
-      console.log('customer is checking out');
+    checkout(customer){
+      for(var i = 0; i < this.customers.length; i++){
+        if(this.customers[i] === customer){
+          this.customers.splice(i, 1);
+          console.log('Customer ' + customer.name + ' has checked out');
+          return true;
+        }
+      }
     }
 }
