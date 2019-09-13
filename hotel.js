@@ -8,10 +8,10 @@ class Hotel{
       this.orders = [];
     }
     addCustomer(name){
-      var customer = new Customer(name, this.takeRoomServiceOrder, this.checkout);
-      this.customers.push(customer);
       for(var i = 0; i < this.rooms.length; i++){
         if(this.rooms[i].isVacant()){
+          var customer = new Customer(name, this.takeRoomServiceOrder, this.checkout);
+          this.customers.push(customer);
           this.rooms[i].addCustomer(customer)
           return true;
         }
